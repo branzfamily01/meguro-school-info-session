@@ -1,0 +1,77 @@
+{
+  "primaryEventId": "meguro-2026-10",
+  "events": [
+    {
+      "id": "meguro-2026-10",
+      "year": 2026,
+      "month": 10,
+      "title": "第1回 学校説明会",
+      "date": "2026-10-24",
+      "timezone": "Asia/Tokyo",
+      "receptionTime": null,
+      "startTime": "14:30",
+      "endTime": null,
+      "venue": "体育館",
+      "audience": "中学生・保護者",
+      "programs": [],
+      "notes": [],
+      "application": {
+        "status": "unknown",
+        "url": null,
+        "opensAt": null,
+        "closesAt": null,
+        "checkedAt": "2026-09-10T20:37:00+09:00",
+        "noticeUrl": "https://www.metro.ed.jp/meguro-h/guide/meeting.html",
+        "conditionsSummary": null
+      }
+    },
+    {
+      "id": "meguro-2026-11",
+      "year": 2026,
+      "month": 11,
+      "title": "第2回 学校説明会",
+      "date": "2026-11-21",
+      "timezone": "Asia/Tokyo",
+      "receptionTime": null,
+      "startTime": "14:30",
+      "endTime": null,
+      "venue": "体育館",
+      "audience": "中学生・保護者",
+      "programs": [],
+      "notes": [],
+      "application": {
+        "status": "unknown",
+        "url": null,
+        "opensAt": null,
+        "closesAt": null,
+        "checkedAt": "2026-09-10T20:37:00+09:00",
+        "noticeUrl": "https://www.metro.ed.jp/meguro-h/guide/meeting.html",
+        "conditionsSummary": null
+      }
+    },
+    {
+      "id": "meguro-2026-12",
+      "year": 2026,
+      "month": 12,
+      "title": "第3回 学校説明会",
+      "date": "2026-12-19",
+      "timezone": "Asia/Tokyo",
+      "receptionTime": null,
+      "startTime": "10:00 / 14:00",
+      "endTime": null,
+      "venue": "視聴覚室",
+      "audience": "中学生・保護者",
+      "programs": [],
+      "notes": [],
+      "application": {
+        "status": "unknown",
+        "url": null,
+        "opensAt": null,
+        "closesAt": null,
+        "checkedAt": "2026-09-10T20:37:00+09:00",
+        "noticeUrl": "https://www.metro.ed.jp/meguro-h/guide/meeting.html",
+        "conditionsSummary": null
+      }
+    }
+  ]
+}
