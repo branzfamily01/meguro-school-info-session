@@ -1,0 +1,67 @@
+{
+  "sections": [
+    {
+      "sectionId": "entrance",
+      "heading": "目黒高校を、ひと足先に歩いてみよう。",
+      "body": "生徒のいる学校を、写真と短い言葉で巡る、来校前の小さな学校体験。",
+      "approvalStatus": "approved",
+      "enabled": true
+    },
+    {
+      "sectionId": "discover",
+      "heading": "学校説明会で、出会えること。",
+      "body": "見るだけでは分からない目黒高校を、ここで。",
+      "approvalStatus": "draft",
+      "enabled": true
+    },
+    {
+      "sectionId": "explore",
+      "heading": "生徒の案内で、校内へ。",
+      "body": "在校生による校内案内を予定しています。見学範囲・実施方法は学校確認後に更新します。",
+      "approvalStatus": "draft",
+      "enabled": true
+    },
+    {
+      "sectionId": "students",
+      "heading": "目高をつくる、生徒たち。",
+      "body": "校内を案内する姿や、仲間と過ごす日常から、学校の雰囲気を感じてもらう場面です。",
+      "approvalStatus": "draft",
+      "enabled": true
+    },
+    {
+      "sectionId": "experience",
+      "heading": "この活気を、会場で。",
+      "body": "部活動による応援パフォーマンスを予定しています。出演団体・内容は確認後に掲載します。",
+      "approvalStatus": "draft",
+      "enabled": true
+    },
+    {
+      "sectionId": "learning",
+      "heading": "学びも、その先も。",
+      "body": "学校生活だけでなく、学びや進路についても知る機会として案内します。説明テーマは確認済みの内容だけを掲載します。",
+      "approvalStatus": "draft",
+      "enabled": true
+    },
+    {
+      "sectionId": "information",
+      "heading": "10月 学校説明会",
+      "body": "参加判断に必要な情報を一か所にまとめます。",
+      "approvalStatus": "approved",
+      "enabled": true
+    },
+    {
+      "sectionId": "upcoming",
+      "heading": "11月・12月の開催予定",
+      "body": "10月に都合がつかない方へ、今後の学校説明会の日程を案内します。",
+      "approvalStatus": "approved",
+      "enabled": true
+    },
+    {
+      "sectionId": "visit",
+      "heading": "次は、目黒高校で会いましょう。",
+      "body": "正式な申込情報が公開されたら、ここから学校の正式申込ページへ進めます。",
+      "approvalStatus": "approved",
+      "enabled": true
+    }
+  ]
+}
