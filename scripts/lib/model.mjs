@@ -61,6 +61,7 @@ export function resolveStatus(event,now=new Date()) {
   const status = event.application.status;
   if (['postponed','cancelled'].includes(status)) return status;
   if (event.date && jstDate(now) > event.date) return 'ended';
+  if (status === 'open' && event.application.opensAt && now < new Date(event.application.opensAt)) return 'scheduled';
   if (status === 'open' && event.application.closesAt && now > new Date(event.application.closesAt)) return 'closed';
   return status;
 }
