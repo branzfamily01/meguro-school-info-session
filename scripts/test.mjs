@@ -14,8 +14,8 @@ assert.ok(!result.html.includes('target="_blank"'));
 assert.ok(!result.html.includes('href="#"'));
 
 const heroMonth = result.html.indexOf('2026年10月 学校説明会');
-const heroDate = result.html.indexOf('event-date');
-const heroCopy = result.html.indexOf('hero-title');
+const heroDate = result.html.indexOf('<div class="event-date">');
+const heroCopy = result.html.indexOf('<h1 class="hero-title"');
 const heroCta = result.html.indexOf('data-hero-cta');
 const heroPhoto = result.html.indexOf('data-hero-media');
 assert.ok(heroMonth < heroDate && heroDate < heroCopy && heroCopy < heroCta && heroCta < heroPhoto, 'スマホHeroのDOM順が仕様と一致しません');
