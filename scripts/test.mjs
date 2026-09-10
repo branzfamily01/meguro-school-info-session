@@ -13,12 +13,19 @@ assert.match(result.html, /申込方法・受付開始日は後日公開/);
 assert.ok(!result.html.includes('target="_blank"'));
 assert.ok(!result.html.includes('href="#"'));
 
+const heroMonth = result.html.indexOf('2026年10月 学校説明会');
+const heroDate = result.html.indexOf('event-date');
+const heroCopy = result.html.indexOf('hero-title');
+const heroCta = result.html.indexOf('data-hero-cta');
+const heroPhoto = result.html.indexOf('data-hero-media');
+assert.ok(heroMonth < heroDate && heroDate < heroCopy && heroCopy < heroCta && heroCta < heroPhoto, 'スマホHeroのDOM順が仕様と一致しません');
+
 const baseEvent = {
   id: 'test', year: 2026, month: 10, date: '2026-10-24', timezone: 'Asia/Tokyo',
   receptionTime: '14:00', startTime: '14:30', venue: '体育館', audience: '中学生・保護者',
   application: {
-    status: 'unknown', url: 'https://example.com/apply', opensAt: '2026-10-01T09:00:00+09:00',
-    closesAt: '2026-10-23T17:00:00+09:00', checkedAt: '2026-09-30T10:00:00+09:00',
+    status: 'unknown', url: 'https://example.com/apply', opensAt: '2026-09-01T09:00:00+09:00',
+    closesAt: '2026-10-23T17:00:00+09:00', checkedAt: '2026-09-10T20:00:00+09:00',
     noticeUrl: 'https://example.com/notice', conditionsSummary: '事前申込制'
   }
 };
@@ -29,6 +36,11 @@ for (const status of ['unknown','scheduled','open','full','closed','ended','post
   const view = applicationView(event, status);
   assert.ok(view.label && view.cta && view.href);
 }
+
+const beforeOpen = structuredClone(baseEvent);
+beforeOpen.application.status = 'open';
+beforeOpen.application.opensAt = '2026-10-01T09:00:00+09:00';
+assert.equal(resolveStatus(beforeOpen, now), 'scheduled');
 
 const afterClose = structuredClone(baseEvent);
 afterClose.application.status = 'open';
