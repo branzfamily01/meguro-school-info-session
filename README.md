@@ -2,67 +2,65 @@
 
 2026年度の学校説明会向け、スマートフォンファーストの静的サイトです。
 
-## 現在の扱い
+## 現在の状態
 
-第1回（10/24）をメイン表示し、第2回（11/21）・第3回（12/19）は今後の予定として掲載しています。
-詳細が未確定の項目は、昨年度情報を流用せず「後日公開」「調整中」としています。
+- 10月24日（土）14:30〜／体育館をメイン表示
+- 11月21日（土）14:30〜／体育館、12月19日（土）10:00〜・14:00〜／視聴覚室を今後の予定として掲載
+- 上記日程・時刻・会場は東京都立目黒高等学校の2026年度イベント案内で確認済み
+- 申込方法・受付時間・定員・正式申込URLは2026-09-10時点で未確認のため `unknown`
+- 生徒による校内案内・応援パフォーマンス等は、学校確認前のためプレビューでは「内容確認中」として扱う
+- `data/site.json` の `publishMode` は `preview`。プレビュー時は `noindex,nofollow`
 
-## ファイル構成
+## 構成
 
-- `index.html` 本体
-- `css/style.css` デザイン
-- `js/app.js` 申込受付状態・申込URLの設定
-- `assets/` 今後の写真・画像置き場
-- `content.md` 内容とデザイン方針の正本
-- `README.md` このファイル
+- `data/events.json` 開催日・時刻・会場・申込状態の正本
+- `data/content.json` セクション原稿と承認状態
+- `data/photos.json` 写真メタデータと公開可否
+- `data/site.json` 学校情報・公開モード・更新日
+- `scripts/build.mjs` データ検証と静的HTML生成
+- `scripts/test.mjs` 状態・URL・生成結果の自動テスト
+- `css/style.css` 表示スタイル
+- `js/app.js` 固定CTA・動きを減らす設定・軽い奥行き演出
+- `index.html` 互換用の生成済み公開HTML
+- `dist/` 推奨公開ディレクトリ
+- `docs/MASTER_DESIGN_SPEC.md` 実装基準
+- `docs/PROJECT_STATE.md` 現在地と残作業
+- `docs/DECISIONS.md` 設計上の決定
 
-## 申込受付を開始するとき
+## ビルドとテスト
 
-`js/app.js` 冒頭の `SITE_CONFIG` を変更します。
-
-例：
-
-```js
-const SITE_CONFIG = {
-  application: {
-    status: "open",
-    url: "ここに正式な申込URL"
-  }
-};
+```bash
+npm run build
+npm test
 ```
 
-status は以下の4種類です。
+外部ライブラリは不要です。Node.js 20以上を使用します。
 
-- `coming-soon` 受付情報公開前
-- `open` 受付中
-- `few-left` 残席わずか
-- `closed` 受付終了
+## 申込受付開始時
 
-## 写真を追加するとき
+`data/events.json` の10月イベントを更新します。`application.status = "open"` にする場合は、誤公開防止のため次の項目がすべて必須です。
 
-現時点では権利関係の不明な学校写真を勝手に埋め込まず、写真掲載エリアを仮表示しています。
-正式な学校写真が用意できたら `assets/` に保存し、Hero・学校生活セクションへ反映してください。
+- date
+- receptionTime
+- startTime
+- venue
+- audience
+- application.url
+- application.opensAt
+- application.closesAt
+- application.checkedAt
+- application.conditionsSummary
 
-推奨：
-- Hero 横長 1600px以上
-- WebPまたはAVIF
-- 1枚あたり可能なら300KB前後以下
-- 生徒が写る写真は学校内の掲載ルール・許諾を確認
+不足している場合はビルドが失敗します。
 
-## GitHubへアップロードするもの
+受付状態は `unknown / scheduled / open / full / closed / ended / postponed / cancelled` を使用します。ブラウザ側で自動的に受付開始へ切り替えることはありません。`open` の締切を過ぎた状態で再ビルドすると、安全側に `closed` 表示へ解決します。
 
-ZIPそのものではなく、ZIPを解凍した以下をリポジトリ直下へアップロードします。
+## 写真追加
 
-```
-index.html
-css/
-js/
-assets/
-README.md
-content.md
-```
+権利確認済みの実写だけを使用してください。公開可否・alt・焦点位置・撮影情報を `data/photos.json` に記録し、承諾管理資料そのものは公開リポジトリへ入れません。
 
 ## 公開
 
-静的サイトとしてCloudflare Workers Static Assets等へ配置できます。
-アクセス制限（Limited）はサイトUIとは分離し、Cloudflare側のサーバー設定で行う想定です。
+推奨公開起点は `dist/` です。既存公開設定がルート配信の場合に備え、ビルド時にルート `index.html` も同時生成します。
+
+現在はプレビュー扱いです。学校確認済み原稿・写真・申込情報が揃うまで `publishMode: "production"` に変更しません。

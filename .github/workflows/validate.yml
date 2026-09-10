@@ -1,0 +1,30 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - implement-master-design-v1
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+      - name: Sync generated root HTML on implementation branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/implement-master-design-v1'
+        run: |
+          if ! git diff --quiet -- index.html; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add index.html
+            git commit -m "Generate index.html [skip ci]"
+            git push
+          fi
